@@ -5,7 +5,7 @@ import { AdminService } from '../../services/admin.service';
 @Component({
   selector: 'app-search-car',
   templateUrl: './search-car.component.html',
-  styleUrls: ['./search-car.component.scss']
+  styleUrls: ['./search-car.component.css']
 })
 export class SearchCarComponent {
 
@@ -24,19 +24,19 @@ export class SearchCarComponent {
       type: [null],
       color: [null],
       transmission: [null]
-    })
+    });
   }
 
   searchCar() {
     this.isSpinning = true;
+    this.cars = []; // Clear the previous search results
     this.adminService.searchCar(this.validateForm.value).subscribe((res) => {
       this.isSpinning = false;
       console.log(res);
       res.carDtoList.forEach(element => {
         element.processedImg = 'data:image/jpeg;base64,' + element.returnedImage;
-        this.cars.push(element);
+        this.cars.push(element); // Add new search results
       });
-    })
+    });
   }
-
 }

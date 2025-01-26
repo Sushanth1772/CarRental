@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CustomerService } from '../../services/customer.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { CustomerService } from '../../services/customer.service';
 
 @Component({
   selector: 'app-search-car',
   templateUrl: './search-car.component.html',
-  styleUrls: ['./search-car.component.scss']
+  styleUrls: ['./search-car.component.css']
 })
 export class SearchCarComponent {
 
@@ -24,19 +24,19 @@ export class SearchCarComponent {
       type: [null],
       color: [null],
       transmission: [null]
-    })
+    });
   }
 
   searchCar() {
     this.isSpinning = true;
+    this.cars = []; // Clear the previous search results
     this.customerService.searchCar(this.validateForm.value).subscribe((res) => {
       this.isSpinning = false;
       console.log(res);
       res.carDtoList.forEach(element => {
         element.processedImg = 'data:image/jpeg;base64,' + element.returnedImage;
-        this.cars.push(element);
+        this.cars.push(element); // Add new search results
       });
-    })
+    });
   }
-
 }

@@ -7,7 +7,7 @@ import { NzNotificationService } from "ng-zorro-antd/notification";
 @Component({
   selector: 'app-post-car',
   templateUrl: './post-car.component.html',
-  styleUrls: ['./post-car.component.scss']
+  styleUrls: ['./post-car.component.css']
 })
 export class PostCarComponent {
 
